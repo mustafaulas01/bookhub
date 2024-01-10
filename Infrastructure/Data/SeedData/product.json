@@ -1,0 +1,75 @@
+[
+{
+"Name":"İyileşmek Üzerine",
+"Description":"Bu kitap Küçük bir kız çocuğunun çocukluğunda yaşadıı travmaları anlatır",
+"Price":80.30,
+"PictureUrl":"images/products/iyilesme.jpg",
+"CategoryId":1,
+"Writer":"Adam Phillips",
+"PublisherId":9
+},
+{
+"Name":"Vazgeçilmez olmanın sırları",
+"Description":"Kitap hayatta nasıl karşına çıkabiliecek engelelre karşı mücadele etmeyi ve nasıl insanlara karşı vazgeçilmez olmayı anlatıyor.",
+"Price":74.40,
+"PictureUrl":"images/products/vazgecilmez.jpg",
+"CategoryId":2,
+"Writer":"Esra Ezmeci",
+"PublisherId":8
+},
+{
+"Name":"Uğultulu Tepeler",
+"Description":"Kitap 1980 yıllarda geçen iki etnik grubun çatışmasını ve nasıl bir çözüm orta yol bularak sorunları aştığını anlatıyor",
+"Price":116.80,
+"PictureUrl":"images/products/ugultu.jpg",
+"CategoryId":6,
+"Writer":"Emily Bronte",
+"PublisherId":2
+},
+{
+"Name":"Göğü Delen Adam",
+"Description":"Göğü Delen Adam (Almanca özgün adı Der Papalagi), Erich Scheurmann tarafından ilk kez Almancada 1920 yılında yazılan kitap. Kitapta, Samoa'da bir kabile şefi olan Tuavii'nin Avrupa'da geçirdiği günleri bir mektup halinde halkına anlatması konu edilmektedir.",
+"Price":68.90,
+"PictureUrl":"images/products/gok.jpg",
+"CategoryId":1,
+"Writer":"Erich Scheurmann",
+"PublisherId":4
+},
+{
+"Name":"Göğü Delen Adam",
+"Description":"Chuck Palahniuk'i Dövüş Kulübü ile tanıyanlardanım ben de. Hep okumak istiyordum, olmuyordu. Bu sitenin de en büyük faydası benim gibi tembel ama istekli olanları zorlaması bir nevi. Tıkanmadan, sıkılmadan bitirdim kitabı. Bir ders çıkardım mı, hayatım değişti mi? Hayır. Mutlu muyum? Çok. Okumaya değer mi, kesinlikle.",
+"Price":168.40,
+"PictureUrl":"images/products/tikanma.jpg",
+"CategoryId":2,
+"Writer":"Chuck Palahniuk",
+"PublisherId":1
+},
+{
+"Name":"İyilik Üzerine",
+"Description":"Hep okumak istiyordum, olmuyordu. Bu sitenin de en büyük faydası benim gibi tembel ama istekli olanları zorlaması bir nevi. Tıkanmadan, sıkılmadan bitirdim kitabı. Bir ders çıkardım mı, hayatım değişti mi? Hayır. Mutlu muyum? Çok. Okumaya değer mi, kesinlikle.",
+"Price":73.00,
+"PictureUrl":"images/products/iyilik.jpg",
+"CategoryId":4,
+"Writer":"Adam Phillips",
+"PublisherId":1
+},
+{
+"Name":"Cüret",
+"Description":"Kitaplarıyla yüzbinlerce kişinin yaşamına dokunan Esra Ezmeci yeni kitabı Cüret ile okurlarına korkusuzca ve kendinin farkında olarak yaşayabilmenin yol haritasını veriyor.",
+"Price":138.60,
+"PictureUrl":"images/products/curet.jpg",
+"CategoryId":1,
+"Writer":"Esra Ezmeci",
+"PublisherId":8
+},
+{
+"Name":"İyi Hissetmek",
+"Description":"Kitaplarıyla yüzbinlerce kişinin yaşamına dokunan Esra Ezmeci yeni kitabı Cüret ile okurlarına korkusuzca ve kendinin farkında olarak yaşayabilmenin yol haritasını veriyor.",
+"Price":157.15,
+"PictureUrl":"images/products/hissetmek.jpg",
+"CategoryId":2,
+"Writer":"David Burns",
+"PublisherId":2
+}
+
+]

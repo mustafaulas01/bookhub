@@ -1,0 +1,38 @@
+[
+{
+"Id":1,
+"Name":"Alfa"
+},
+{
+"Id":2,
+"Name":"Türkiye İş Bankası"
+},
+{
+"Id":3,
+"Name":"Yapı Kredi Yayınları"
+},
+{
+"Id":4,
+"Name":"Altın Kitaplar"
+},
+{
+"Id":5,
+"Name":"Ithaki"
+},
+{
+"Id":6,
+"Name":"Turkuvaz"
+},
+{
+"Id":7,
+"Name":"Doğan Kitap"
+},
+{
+"Id":8,
+"Name":"Destek"
+},
+{
+    "Id":9,
+    "Name":"Ayrıntı Yayınları"  
+}
+]

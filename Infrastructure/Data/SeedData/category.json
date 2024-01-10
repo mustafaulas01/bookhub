@@ -1,0 +1,34 @@
+[
+{
+"Id":1,
+"Name":"Roman"
+},
+{
+"Id":2,
+"Name":"Kişisel Gelişim"
+},
+{
+"Id":3,
+"Name":"Tarih"
+},
+{
+"Id":4,
+"Name":"Felsefe"
+},
+{
+"Id":5,
+"Name":"Bilim"
+},
+{
+"Id":6,
+"Name":"Sanat-Tasarım"
+},
+{
+"Id":7,
+"Name":"Edebiyat"
+},
+{
+"Id":8,
+"Name":"Mitoloji Efsane"
+}
+]

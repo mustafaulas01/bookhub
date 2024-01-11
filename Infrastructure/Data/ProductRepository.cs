@@ -1,6 +1,7 @@
 
 using Core.Entities;
 using Core.Intefaces;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
@@ -14,6 +15,7 @@ namespace Infrastructure.Data
 
         }
 
+
         public async Task<Product> GetProductByIdAsync(int id)
         {
             return await _context.Products.
@@ -26,5 +28,7 @@ namespace Infrastructure.Data
            Include(c=>c.Category).Include(p=>p.Publisher).
            ToListAsync();
         }
+
+    
     }
 }

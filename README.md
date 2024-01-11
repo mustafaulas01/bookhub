@@ -2,4 +2,8 @@
 ## Software Languages used
 - ASP.NETCORE 7.0
 - Angular 16
+- Auto Mapper
+- Repository Pattern
+- Generic Architectural Design
+- REST API
 

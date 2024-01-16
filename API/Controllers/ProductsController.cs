@@ -6,6 +6,7 @@ using Infrastructure.Data;
 using Core.Intefaces;
 using AutoMapper;
 using API.Dto;
+using API.Errors;
 
 namespace API.Controllers
 {
@@ -32,10 +33,15 @@ namespace API.Controllers
         }
              
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status404NotFound)] 
         public async Task < ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
           var product= await _productRepository.GetProductByIdAsync(id);
        
+       if(product==null)
+       return NotFound(new ApiResponse(404));
+
           return Ok(_mapper.Map<Product,ProductToReturnDto>(product));
         }
         

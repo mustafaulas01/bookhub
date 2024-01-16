@@ -33,7 +33,8 @@ namespace API.Controllers
        [HttpGet("servererror")]
        public ActionResult GetServeerError() 
        {
-        
+          var thing=_context.Products.Find(42);
+          var thinhtoReturn=thing.ToString();
         return Ok();
        }
 

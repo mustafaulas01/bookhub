@@ -14,13 +14,13 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) { }
   ngOnInit(): void {
     this.http.get<Product[]>('https://localhost:5001/api/products').subscribe({
-      next: response => {this.products=response},//what to do next
+      next: response => { this.products = response },//what to do next
       error: error => console.log("eror:" + error),//what to do if there is error
       complete: () => {
         console.log("Requested completed")
       }
     })
-    console.log("porducts:"+this.products)
+    console.log("porducts:" + this.products)
   }
 
 }

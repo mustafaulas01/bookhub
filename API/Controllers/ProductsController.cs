@@ -23,7 +23,7 @@ namespace API.Controllers
         _mapper=mapper;
        }
 
-        [HttpGet] //GET: /api/products/filterOn=Name&filterQuery=yeşiller&sortBy=Category&isAscending=true&pageNumber=1&pageSize=10
+        [HttpGet] //GET: /api/products?filterOn=Name&filterQuery=yeşiller&sortBy=Category&isAscending=true&pageNumber=1&pageSize=10
         public async Task <ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts([FromQuery] string?filterOn,[FromQuery]string?filterQuery,
         [FromQuery] string? sortBy,[FromQuery]bool ? isAscending,[FromQuery] int pageNumber=1,[FromQuery]int pageSize=4)
         {

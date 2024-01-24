@@ -9,18 +9,10 @@ import { Product } from './shared/models/product';
 })
 export class AppComponent implements OnInit {
   title = 'Bookhub';
-  products:Product[]=[];
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
   ngOnInit(): void {
-    this.http.get<Product[]>('https://localhost:5001/api/products').subscribe({
-      next: response => { this.products = response },//what to do next
-      error: error => console.log("eror:" + error),//what to do if there is error
-      complete: () => {
-        console.log("Requested completed")
-      }
-    })
-    console.log("porducts:" + this.products)
+
   }
 
 }

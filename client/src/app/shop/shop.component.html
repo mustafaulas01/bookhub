@@ -8,15 +8,12 @@
                 <option>Price:Low to high</option>
                 <option>Price Hight to low </option>
             </select>
-      <h5 class="text-warning ms-3"> Brands  </h5>
+      <h5 class="text-warning ms-3"> Categories  </h5>
         <ul class="list-group my-3">
-            <li class="list-group-item active">An active item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-            <li class="list-group-item">A fourth item</li>
-            <li class="list-group-item">And a fifth one</li>
+            <li class="list-group-item" *ngFor="let category of categories">{{category.name}}</li>
+
           </ul>
-          <h5 class="text-warning ms-3"> Types  </h5>
+          <h5 class="text-warning ms-3"> Publishers  </h5>
           <ul class="list-group my-3">
               <li class="list-group-item active">An active item</li>
               <li class="list-group-item">A second item</li>

@@ -25,9 +25,9 @@ namespace API.Controllers
 
         [HttpGet] //GET: /api/products?filterOn=Name&filterQuery=yeşiller&sortBy=Category&isAscending=true&pageNumber=1&pageSize=10
         public async Task <ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts([FromQuery] string?filterOn,[FromQuery]string?filterQuery,
-        [FromQuery] string? sortBy,[FromQuery]bool ? isAscending,[FromQuery] int pageNumber=1,[FromQuery]int pageSize=4)
+        [FromQuery] string? sortBy,[FromQuery]bool ? isAscending,[FromQuery] int pageNumber=1,[FromQuery]int pageSize=4,int categoryId=0,int publisherId=0)
         {
-            var products= await _productRepository.GetProductsAsync(filterOn,filterQuery,sortBy,isAscending ?? true,pageNumber,pageSize);
+            var products= await _productRepository.GetProductsAsync(filterOn,filterQuery,sortBy,isAscending ?? true,pageNumber,pageSize,categoryId,publisherId);
            
    
           return Ok(_mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductToReturnDto>>(products));

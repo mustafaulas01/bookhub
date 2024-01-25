@@ -29,7 +29,9 @@ namespace API.Extensions
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository,CategoryRepository>();
+            services.AddScoped<IPublisherRepository,PublisherRepository>();
             
+
             //services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
             #region controllerError
             services.Configure<ApiBehaviorOptions>(options =>

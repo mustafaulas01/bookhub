@@ -25,14 +25,14 @@ namespace Infrastructure.Data
         }
 
         public async Task<IReadOnlyList<Product>> GetProductsAsync(string? filterOn=null,string? filterQuery=null,string?sortBy=null
-        ,bool isAscending=true,int pageNumber=1,int pageSize=4)
+        ,bool isAscending=true,int pageNumber=1,int pageSize=4,int categoryId=0,int publisherId=0)
         {
             var products=  _context.Products.Include(c=>c.Category).Include(p=>p.Publisher).AsQueryable();
 
             //var name=product.Name.ToUpper(CultureInfo.GetCultureInfo("tr-TR"));
 
             if (!string.IsNullOrWhiteSpace(filterQuery))
-                filterQuery = filterQuery.ToUpper(); ;
+                filterQuery = filterQuery.ToUpper(); 
             //Filtering
             if (string.IsNullOrWhiteSpace(filterOn)==false&&string.IsNullOrWhiteSpace(filterQuery)==false)
             {
@@ -81,6 +81,12 @@ namespace Infrastructure.Data
                     products = isAscending ? products.OrderBy(a => a.Writer) : products.OrderByDescending(a => a.Writer);
                 }
             }
+            //category
+            if(categoryId!=0)
+            products=products.Where(a=>a.CategoryId==categoryId);
+            //publisher
+            if(publisherId!=0)
+            products=products.Where(a=>a.PublisherId==publisherId);
 
             //pagination
             var skipResults=(pageNumber-1)*pageSize;

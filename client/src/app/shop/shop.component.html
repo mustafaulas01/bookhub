@@ -3,10 +3,9 @@
     <div class="row">
         <section class="col-3">
             <h5 class="text-warning ms-3">Sort</h5>
-            <select class="form-select mb-4">
-                <option>Alphabetical</option>
-                <option>Price:Low to high</option>
-                <option>Price Hight to low </option>
+            <select class="form-select mb-4"(change)="onSortSelected($event)">
+                <option *ngFor="let sort of sortOptions" [value]="sort.value">{{sort.name}}</option>
+
             </select>
       <h5 class="text-warning ms-3"> Categories  </h5>
         <ul class="list-group my-3">
@@ -41,12 +40,25 @@
                    <button class="btn btn-outline-success">Reset</button>
                 </div>
             </div>
-      <div class="row row-cols-3 g-3">
-       <div class="col" *ngFor="let product of products">
-        <app-product-item [product]="product"></app-product-item>
-     </div>
-      </div>
+    <div class="row row-cols-3 g-3 mb-4">
+        <div class="col" *ngFor="let product of products">
+            <app-product-item [product]="product"></app-product-item>
+        </div>
+    </div>
 
+
+         <div class="f-flex justify-content-center">
+            <pagination [boundaryLinks]="true" 
+                [totalItems]="totalCount"
+                [itemsPerPage]="pageSize" 
+                previousText="&lsaquo;" 
+                [maxSize]="10"
+                nextText="&rsaquo;" 
+                firstText="&laquo;"
+                lastText="&raquo;">
+            
+            </pagination>
+         </div>
         </section>
     </div>
 </div>

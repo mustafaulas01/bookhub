@@ -24,8 +24,13 @@ namespace Infrastructure.Data
            Include(c=>c.Category).Include(p=>p.Publisher).FirstOrDefaultAsync(a=>a.Id==id);
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductsAsync(string? filterOn=null,string? filterQuery=null,string?sortBy=null
-        ,bool isAscending=true,int pageNumber=1,int pageSize=4,int categoryId=0,int publisherId=0)
+        public async Task<int> GetProductCount()
+        {
+            return await _context.Products.CountAsync();
+        }
+
+        public async Task<IReadOnlyList<Product>> GetProductsAsync(string? filterOn=null,string? filterQuery=null
+        ,bool isAscending=true,int categoryId=0,int publisherId=0,string?sortBy=null,int pageNumber=1,int pageSize=4)
         {
             var products=  _context.Products.Include(c=>c.Category).Include(p=>p.Publisher).AsQueryable();
 
@@ -68,6 +73,16 @@ namespace Infrastructure.Data
                 {
                     products = isAscending ? products.OrderBy(a => a.Name) : products.OrderByDescending(a => a.Name);
                 }
+                else if (sortBy.Equals("priceAsc"))
+                {
+                    products = products.OrderBy(a => a.Price);
+                }
+                else if (sortBy.Equals("priceDesc"))
+                {
+                   products= products.OrderByDescending(a => a.Price);
+              
+                }
+
                 else if (sortBy.Equals("Category"))
                 {
                     products = isAscending ? products.OrderBy(a => a.Category.Name) : products.OrderByDescending(a => a.Category.Name);

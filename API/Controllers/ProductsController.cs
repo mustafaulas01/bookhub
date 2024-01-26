@@ -25,12 +25,27 @@ namespace API.Controllers
 
         [HttpGet] //GET: /api/products?filterOn=Name&filterQuery=yeşiller&sortBy=Category&isAscending=true&pageNumber=1&pageSize=10
         public async Task <ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts([FromQuery] string?filterOn,[FromQuery]string?filterQuery,
-        [FromQuery] string? sortBy,[FromQuery]bool ? isAscending,[FromQuery] int pageNumber=1,[FromQuery]int pageSize=4,int categoryId=0,int publisherId=0)
+        [FromQuery]bool ? isAscending,
+        int categoryId=0,int publisherId=0,string? sort=null,[FromQuery] int pageNumber=1,[FromQuery]int pageSize=4 )
         {
-            var products= await _productRepository.GetProductsAsync(filterOn,filterQuery,sortBy,isAscending ?? true,pageNumber,pageSize,categoryId,publisherId);
-           
+            var products= await _productRepository.GetProductsAsync(filterOn,filterQuery,isAscending ?? true,categoryId,publisherId,sort,pageNumber,pageSize);
+            var listofProducts=_mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductToReturnDto>>(products).ToList();
+            int totalCount=0;
+            
+            if(categoryId==0&&publisherId==0)
+             totalCount=  await _productRepository.GetProductCount();
+             else 
+             totalCount=products.Count;
+
+           var productResponse=new ProductResponseDto
+           {
+            Data=listofProducts,
+            PageNumber=pageNumber,
+            PageSize=pageSize,
+            TotalCount=totalCount
+           };
    
-          return Ok(_mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductToReturnDto>>(products));
+          return Ok(productResponse);
         }
              
         [HttpGet("{id}")]

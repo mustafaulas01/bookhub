@@ -24,11 +24,15 @@ namespace API.Controllers
        }
 
         [HttpGet] //GET: /api/products?filterOn=Name&filterQuery=yeşiller&sortBy=Category&isAscending=true&pageNumber=1&pageSize=10
-        public async Task <ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts([FromQuery] string?filterOn,[FromQuery]string?filterQuery,
-        [FromQuery]bool ? isAscending,
-        int categoryId=0,int publisherId=0,string? sort=null,[FromQuery] int pageNumber=1,[FromQuery]int pageSize=4 )
+//int categoryId=0,int publisherId=0,[FromQuery]string? sort, [FromQuery]bool ? isAscending=true,[FromQuery] int pageNumber=1,[FromQuery]int pageSize=4,[FromQuery] string?search=null 
+        public async Task <ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts(int categoryId=0,int publisherId=0,
+        [FromQuery] string? sort=null,[FromQuery]bool ? isAscending=true,[FromQuery] int pageNumber=1,[FromQuery]int pageSize=4,[FromQuery]string? search=null)
         {
-            var products= await _productRepository.GetProductsAsync(filterOn,filterQuery,isAscending ?? true,categoryId,publisherId,sort,pageNumber,pageSize);
+
+//int categoryId=0,int publisherId=0,[FromQuery]string? sort, [FromQuery]bool ? isAscending=true,[FromQuery] int pageNumber=1,[FromQuery]int pageSize=4,[FromQuery] string?search=null 
+//categoryId?:number,publisherId?:number,sort?:string,pageNumber:number=1,pageSize:number=4,search?:string
+
+            var products= await _productRepository.GetProductsAsync(categoryId,publisherId,sort,isAscending,pageNumber,pageSize,search);
             var listofProducts=_mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductToReturnDto>>(products).ToList();
             int totalCount=0;
             

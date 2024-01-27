@@ -29,41 +29,44 @@ namespace Infrastructure.Data
             return await _context.Products.CountAsync();
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductsAsync(string? filterOn=null,string? filterQuery=null
-        ,bool isAscending=true,int categoryId=0,int publisherId=0,string?sortBy=null,int pageNumber=1,int pageSize=4)
+        public async Task<IReadOnlyList<Product>> GetProductsAsync(
+       int categoryId=0,int publisherId=0,string?sortBy=null,bool? isAscending=true,int pageNumber=1,int pageSize=4,string?search=null)
         {
             var products=  _context.Products.Include(c=>c.Category).Include(p=>p.Publisher).AsQueryable();
 
             //var name=product.Name.ToUpper(CultureInfo.GetCultureInfo("tr-TR"));
 
-            if (!string.IsNullOrWhiteSpace(filterQuery))
-                filterQuery = filterQuery.ToUpper(); 
+            // if (!string.IsNullOrWhiteSpace(filterQuery))
+            //     filterQuery = filterQuery.ToUpper(); 
+            if(!string.IsNullOrEmpty(search))
+            search=search.ToUpper();
+            bool isAsc = isAscending?? false;
+
             //Filtering
-            if (string.IsNullOrWhiteSpace(filterOn)==false&&string.IsNullOrWhiteSpace(filterQuery)==false)
+            if (string.IsNullOrWhiteSpace(search)==false)
             {
-                if (filterOn.Equals("Name"))
-                {
-                    products = products.Where(a => a.Name.ToUpper().Contains(filterQuery) );
+              
+                    products = products.Where(a => a.Name.ToUpper().Contains(search));
                             
-                }
+                
 
-                else if (filterOn.Equals("Description"))
-                {
-                    products = products.Where(a => a.Description.ToUpper().Contains(filterQuery));
-                }
+                // else if (filterOn.Equals("Description"))
+                // {
+                //     products = products.Where(a => a.Description.ToUpper().Contains(filterQuery));
+                // }
 
-                else if (filterOn.Equals("Category"))
-                {
-                    products = products.Where(a => a.Category.Name.ToUpper().Contains(filterQuery));
-                }
-                else if (filterOn.Equals("Writer"))
-                {
-                    products = products.Where(a => a.Writer.ToUpper().Contains(filterQuery));
-                }
-                else if (filterOn.Equals("Publisher"))
-                {
-                    products = products.Where(a => a.Publisher.Name.ToUpper().Contains(filterQuery));
-                }
+                // else if (filterOn.Equals("Category"))
+                // {
+                //     products = products.Where(a => a.Category.Name.ToUpper().Contains(filterQuery));
+                // }
+                // else if (filterOn.Equals("Writer"))
+                // {
+                //     products = products.Where(a => a.Writer.ToUpper().Contains(filterQuery));
+                // }
+                // else if (filterOn.Equals("Publisher"))
+                // {
+                //     products = products.Where(a => a.Publisher.Name.ToUpper().Contains(filterQuery));
+                // }
 
             }
             //sorting
@@ -71,7 +74,7 @@ namespace Infrastructure.Data
             {
                 if (sortBy.Equals("Name"))
                 {
-                    products = isAscending ? products.OrderBy(a => a.Name) : products.OrderByDescending(a => a.Name);
+                    products = isAsc ? products.OrderBy(a => a.Name) : products.OrderByDescending(a => a.Name);
                 }
                 else if (sortBy.Equals("priceAsc"))
                 {
@@ -85,15 +88,15 @@ namespace Infrastructure.Data
 
                 else if (sortBy.Equals("Category"))
                 {
-                    products = isAscending ? products.OrderBy(a => a.Category.Name) : products.OrderByDescending(a => a.Category.Name);
+                    products = isAsc? products.OrderBy(a => a.Category.Name) : products.OrderByDescending(a => a.Category.Name);
                 }
                 else if (sortBy.Equals("Publisher"))
                 {
-                    products = isAscending ? products.OrderBy(a => a.Publisher.Name) : products.OrderByDescending(a => a.Publisher.Name);
+                    products = isAsc ? products.OrderBy(a => a.Publisher.Name) : products.OrderByDescending(a => a.Publisher.Name);
                 }
                 else if (sortBy.Equals("Writer"))
                 {
-                    products = isAscending ? products.OrderBy(a => a.Writer) : products.OrderByDescending(a => a.Writer);
+                    products = isAsc? products.OrderBy(a => a.Writer) : products.OrderByDescending(a => a.Writer);
                 }
             }
             //category

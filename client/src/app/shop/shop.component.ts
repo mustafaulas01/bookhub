@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, asNativeElements } from '@angular/core';
 import { Product } from '../shared/models/product';
 import { ShopService } from './shop.service';
 import { Category } from '../shared/models/category';
@@ -12,6 +12,8 @@ import { ProductListResponse } from '../shared/models/productListResponse';
 })
 export class ShopComponent implements OnInit {
 
+  @ViewChild('search') searchTerm?:ElementRef;
+  search:string='';
   products: Product[] = [];
   productResponse!: ProductListResponse;
   categories: Category[] = [];
@@ -39,7 +41,7 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts() {
-    this.shopServices.getProducts(this.categoryIdSelected,this.publisherIdSelected,this.sortSelected,this.pageNumber,this.pageSize).subscribe({
+    this.shopServices.getProducts(this.categoryIdSelected,this.publisherIdSelected,this.sortSelected,this.pageNumber,this.pageSize,this.search).subscribe({
       next: response => { this.products = response.data;
       this.totalCount=response.totalCount;
       this.pageSize=response.pageSize;
@@ -75,6 +77,30 @@ export class ShopComponent implements OnInit {
   onSortSelected(event:any){
    this.sortSelected=event.target.value;
    this.getProducts();
+
+  }
+  onPageChanges(event: any) {
+    if (this.pageNumber != event) {
+     this.pageNumber=event;
+     this.getProducts();
+    }
+  }
+
+  onSearch() {
+    this.search=this.searchTerm?.nativeElement.value;
+    this.getProducts();
+  }
+
+  onReset(){
+    if(this.searchTerm) this.searchTerm.nativeElement.value='';
+    this.sortSelected='name';
+    this.sortOptions= [
+      {name:'Alphabetical',value:'name'},
+      {name:'Price:Low to high',value:'priceAsc'},
+      {name:'Price:High to low',value:'priceDesc'}
+    ]
+    this.categoryIdSelected=0;
+    this.publisherIdSelected=0;
 
   }
 }

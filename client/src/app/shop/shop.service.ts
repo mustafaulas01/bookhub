@@ -13,7 +13,7 @@ export class ShopService {
 
   baseUrl="https://localhost:5001/api/"
 
-  getProducts(categoryId?:number,publisherId?:number,sort?:string,pageNumber:number=1,pageSize:number=4)
+  getProducts(categoryId?:number,publisherId?:number,sort?:string,pageNumber:number=1,pageSize:number=4,search?:string)
   {
     let myparams=new HttpParams();
     if(categoryId) myparams=myparams.append('categoryId',categoryId);
@@ -21,6 +21,8 @@ export class ShopService {
     if(sort) myparams=myparams.append('sort',sort);
     myparams=myparams.append("pageNumber",pageNumber);
     myparams=myparams.append("pageSize",pageSize);
+
+    if(search) myparams=myparams.append('search',search);
 
     return this.http.get<ProductListResponse>(this.baseUrl+'products',{params:myparams});
   }
